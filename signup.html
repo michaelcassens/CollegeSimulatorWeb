@@ -20,7 +20,7 @@
         #intro {
             background-color: #809cc3;
             /* Fully opaque */
-            height: 100vh;
+            height: 120vh;
 
         }
 
@@ -36,19 +36,62 @@
         }
     </style>
     <title>College Simulator Licensing</title>
+    <script>
+        function getInfo() {
+            var schoolName = document.getElementById("inputSchoolName").value;
+            localStorage.setItem("schoolName", schoolName);
+
+            var primaryContact = document.getElementById("inputPrimaryContact").value;
+            localStorage.setItem("primaryContact", primaryContact);
+
+            var email = document.getElementById("inputEmail").value;
+            localStorage.setItem("email", email);
+
+            var pwd = document.getElementById("inputPassword4").value;
+            localStorage.setItem("pwd", pwd);
+
+            var address = document.getElementById("inputAddress").value;
+            localStorage.setItem("address", address);
+
+            var address2 = document.getElementById("inputAddress2").value;
+            localStorage.setItem("address2", address2);
+
+            var city = document.getElementById("inputCity").value;
+            localStorage.setItem("city", city);
+
+            var state = document.getElementById("inputState").value;
+            localStorage.setItem("state", state);
+
+            var zip = document.getElementById("inputZip").value;
+            localStorage.setItem("state", zip);
+
+            var phone = document.getElementById("inputPhone").value;
+            localStorage.setItem("phone", phone);
+
+            window.document.location = "payment.html";
+        }
+    </script>
 </head>
 
 <body>
     <div class="container" id="intro">
 
-        <form class="row g-3" method="POST" action="payment.html">
+        <form class="row g-3">
             <div class="col-md-12">
                 <h1>College Simulator Sign up</h1>
             </div>
+            <div class="col-md-12">
+                <label for="inputSchoolName" class="form-label">School Name</label>
+                <input type="text" class="form-control" id="inputSchoolName" required
+                    placeholder="Enter your school name">
+            </div>
+            <div class="col-md-12">
+                <label for="inputPrimaryContact" class="form-label">Primary Contact</label>
+                <input type="text" class="form-control" id="inputPrimaryContact" required>
+            </div>
             <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" required
-                    placeholder="Enter your email">
+                <input type="email" class="form-control" id="inputEmail" required placeholder="Enter your email">
             </div>
             <div class="col-md-6">
                 <label for="inputPassword4" class="form-label">Password</label>
@@ -129,6 +172,11 @@
                 <label for="inputZip" class="form-label">Zip</label>
                 <input type="text" class="form-control" id="inputZip" required>
             </div>
+            <div class="col-md-12">
+                <label for="inputPhone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="inputPhone" required>
+            </div>
+
             <div class="col-12">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="gridCheck">
@@ -138,7 +186,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="button" onclick="getInfo();" class="btn btn-primary">Register</button>
             </div>
             <div class="col-12">
                 <a href="index.html">Login</a>

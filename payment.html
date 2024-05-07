@@ -35,18 +35,76 @@
             color: black
         }
     </style>
+    <script>
+        function getInfo() {
+            var CC = document.getElementById("inputCC").value;
+            localStorage.setItem("CC", CC);
+
+            var month = document.getElementById("inputMonth").value;
+            localStorage.setItem("month", month);
+
+            var year = document.getElementById("inputYear").value;
+            localStorage.setItem("year", year);
+
+            var securityCode = document.getElementById("inputSecurityCode").value;
+            localStorage.setItem("securityCode", securityCode);
+
+            const currentDate = new Date();
+            console.log(currentDate)
+            const expiration = addOneYear(currentDate);
+            console.log(expiration);
+            const uniqueId = createIdentifier(expiration);
+
+            const encrypted = numberCaesarCipher(uniqueId, 7, false);
+            console.log(encrypted);
+            const decrypt = numberCaesarCipher(encrypted, 7, true);
+            console.log(decrypt);
+            localStorage.setItem("activationKey", encrypted);
+            window.document.location = "information.html";
+        }
+
+        function numberCaesarCipher(str, shift, decrypt = false) {
+            const s = decrypt ? (10 - shift) % 10 : shift;
+            const numberZero = '0'.charCodeAt(0);
+            const numberNine = '9'.charCodeAt(0);
+
+            return str.split('')
+                .map(char => {
+                    const code = char.charCodeAt(0);
+                    if (code >= numberZero && code <= numberNine) {
+                        return String.fromCharCode(((code - numberZero + s) % 10) + numberZero);
+                    } else {
+                        return char; // Leave non-numbers unchanged
+                    }
+                })
+                .join('');
+        }
+
+        function createIdentifier(expirationDate) {
+            const timestamp = expirationDate.getTime();
+            return timestamp.toString();
+        }
+
+        function addOneYear(date) {
+            // Making a copy with the Date() constructor
+            const dateCopy = new Date(date);
+            dateCopy.setFullYear(dateCopy.getFullYear() + 1);
+            return dateCopy;
+        }
+
+    </script>
     <title>College Simulator Subscription</title>
 </head>
 
 <body>
     <div class="container" id="intro">
 
-        <form class="row g-3" method="POST" action="information.html">
+        <form class="row g-3">
             <div class="col-md-12">
                 <h1>College Simulator Subscription</h1>
             </div>
-           
-           
+
+
             <div class="col-md-4">
                 <span class="badge text-bg-secondary">Annual Subscription</span></h1>
                 $49.99
@@ -59,7 +117,7 @@
                 <label for="inputMonth" class="form-label">Expiration Date</label>
             </div>
             <div class="col-md-6">
-               
+
                 <select id="inputMonth" class="form-select">
                     <option selected>-month-</option>
                     <option value="1">1</option>
@@ -77,7 +135,7 @@
                 </select>
             </div>
             <div class="col-md-6">
-               <select id="inputYear" class="form-select">
+                <select id="inputYear" class="form-select">
                     <option selected>-year-</option>
                     <option value="1">2024</option>
                     <option value="2">2025</option>
@@ -97,21 +155,12 @@
                 <label for="inputSecurityCode" class="form-label">Security Code</label>
                 <input type="text" class="form-control" id="inputSecurityCode">
             </div>
-            
+
+
             <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Agree to the terms
-                    </label>
-                </div>
+                <button type="button" class="btn btn-primary" onclick="getInfo();">Pay Now</button>
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Pay Now</button>
-            </div>
-            <div class="col-12">
-                <a href="index.html">Login</a>
-            </div>
+
         </form>
     </div>
 

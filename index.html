@@ -36,7 +36,20 @@
         }
     </style>
     <script>
-       
+        function checkLogin() {
+            let email = document.getElementById("inputEmail4").value;
+            let pwd = document.getElementById("inputPassword4").value;
+
+            let storedEmail = localStorage.getItem("email");
+            let storedPWD = localStorage.getItem("pwd");
+            console.log(email);
+            if (email == storedEmail && pwd == storedPWD) {
+                window.document.location = "information.html";
+            }
+            else {
+                document.getElementById("lblMessage").innerHTML = "Incorrect login information, please try again.";
+            }
+        } 
     </script>
     <title>College Simulator Licensing</title>
 </head>
@@ -44,13 +57,17 @@
 <body>
     <div class="container" id="intro">
 
-        <form class="row g-3" action="information.html">
+        <form class="row g-3">
             <div class="col-md-12">
                 <h1>College Simulator Administrator Login</h1>
             </div>
             <div class="col-md-12">
+                <label id="lblMessage" style="color:red" class="form-label"></label>
+
+            </div>
+            <div class="col-md-12">
                 <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4"  required>
+                <input type="email" class="form-control" id="inputEmail4" required>
             </div>
 
             <div class="col-md-12">
@@ -58,7 +75,10 @@
                 <input type="password" class="form-control" id="inputPassword4" required>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary" javascript="checkAndPost();">Sign in</button>
+                <button type="button" class="btn btn-primary" onclick="checkLogin();">Sign in</button>
+            </div>
+            <div class="col-12">
+                <a href="#">Forgot Password?</a>
             </div>
             <div class="col-12">
                 <a href="signup.html">Register for an account</a>

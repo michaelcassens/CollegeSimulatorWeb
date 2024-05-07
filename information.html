@@ -20,7 +20,7 @@
         #intro {
             background-color: #809cc3;
             /* Fully opaque */
-            height: 100vh;
+            height: 140vh;
 
         }
 
@@ -36,12 +36,68 @@
         }
     </style>
     <script>
-       
+        function fillInfo() {
+            let schoolName = localStorage.getItem("schoolName");
+            document.getElementById("lblSchoolName").innerHTML = schoolName;
+
+            let primaryContact = localStorage.getItem("primaryContact");
+            document.getElementById("lblPrimaryContact").innerHTML = primaryContact;
+
+            let email = localStorage.getItem("email");
+            document.getElementById("lblEmail").innerHTML = email;
+
+            let address = localStorage.getItem("address");
+            document.getElementById("lblAddress").innerHTML = address;
+
+            let address2 = localStorage.getItem("address2");
+            document.getElementById("lblAddress2").innerHTML = address2;
+
+            let city = localStorage.getItem("city");
+            document.getElementById("lblCity").innerHTML = city;
+
+            let state = localStorage.getItem("state");
+            document.getElementById("lblState").innerHTML = state;
+
+            let zip = localStorage.getItem("zip");
+            document.getElementById("lblZip").innerHTML = zip;
+
+            let phone = localStorage.getItem("phone");
+            document.getElementById("lblPhone").innerHTML = phone;
+
+            let activationKey = localStorage.getItem("activationKey");
+            document.getElementById("lblActivationKey").innerHTML = activationKey;
+
+            const decrypted = numberCaesarCipher(activationKey, 7, true);
+
+            const date = new Date(parseInt(decrypted));
+            document.getElementById("lblValidDate").innerHTML = date;
+
+
+
+
+        }
+
+        function numberCaesarCipher(str, shift, decrypt = false) {
+            const s = decrypt ? (10 - shift) % 10 : shift;
+            const numberZero = '0'.charCodeAt(0);
+            const numberNine = '9'.charCodeAt(0);
+
+            return str.split('')
+                .map(char => {
+                    const code = char.charCodeAt(0);
+                    if (code >= numberZero && code <= numberNine) {
+                        return String.fromCharCode(((code - numberZero + s) % 10) + numberZero);
+                    } else {
+                        return char; // Leave non-numbers unchanged
+                    }
+                })
+                .join('');
+        }
     </script>
     <title>College Simulator Licensing</title>
 </head>
 
-<body>
+<body onload="fillInfo();">
     <div class="container" id="intro">
 
         <form class="row g-3" action="information.html">
@@ -49,29 +105,46 @@
                 <h1>College Simulator Administrator Dashboard</h1>
             </div>
             <div class="col-md-12">
+                <label for="schoolName" class="form-label"><strong>School Name</strong></label><br>
+                <span id="lblSchoolName"></span><br>
+                <a href="#">Change School Name</a>
+            </div>
+            <div class="col-md-12">
+                <label for="primaryContact" class="form-label"><strong>Primary Contact</strong></label><br>
+                <span id="lblPrimaryContact"></span><br>
+                <a href="#">Change Primary Contact</a>
+            </div>
+            <div class="col-md-12">
                 <label for="inputEmail4" class="form-label"><strong>Email</strong></label><br>
-                admin@school.com<br>
+                <span id="lblEmail"></span><br>
                 <a href="#">Change Email</a>
             </div>
 
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label"><strong>Password</strong></label><br>
                 ******<br>
-                <a href="#">Change Passsord</a>
+                <a href="#">Change Password</a>
             </div>
             <div class="col-md-12">
                 <label for="inputPassword4" class="form-label"><strong>School Information</strong></label><br>
-                123 Main St.<br>
-                Anywhere, MT 52922<br>
-                406-555-5555
+                <span id="lblAddress"></span><br>
+                <span id="lblAddress2"></span><br>
+                <span id="lblCity"></span>, <span id="lblState"></span> <span id="lblZip"></span><br>
+
                 <br>
-                <a href="#">Edit School Information</a>
+                <a href="#">Edit Address Information</a>
             </div>
             <div class="col-md-12">
-                <label for="inputEmail4" class="form-label"><strong>Activation Key</strong></label><br>
-                2837455
+                <label for="inputPhone" class="form-label"><strong>Phone</strong></label><br>
+                <span id="lblPhone"></span><br>
                 <br>
-                Subscription valid through: 5/2/2025
+                <a href="#">Edit Phone Number</a>
+            </div>
+            <div class="col-md-12">
+                <label for="inputActivation" class="form-label"><strong>Activation Key</strong></label><br>
+                <span id="lblActivationKey"></span><br><br>
+                <b>Subscription valid through: </b>
+                <br><span id="lblValidDate"></span><br>
             </div>
             <div class="col-12">
                 <a href="index.html">Logout</a>
