@@ -20,7 +20,7 @@
         #intro {
             background-color: #809cc3;
             /* Fully opaque */
-            height: 140vh;
+            height: 180vh;
 
         }
 
@@ -43,6 +43,9 @@
             let primaryContact = localStorage.getItem("primaryContact");
             document.getElementById("lblPrimaryContact").innerHTML = primaryContact;
 
+            let adminContact = localStorage.getItem("adminContact");
+            document.getElementById("lblPrimaryContact").innerHTML = adminContact;
+
             let email = localStorage.getItem("email");
             document.getElementById("lblEmail").innerHTML = email;
 
@@ -62,19 +65,19 @@
             document.getElementById("lblZip").innerHTML = zip;
 
             let billingaddress = localStorage.getItem("billingaddress");
-            document.getElementById("billingadderashed").innerHTML = billingaddress;
+            document.getElementById("lblBillingAddress").innerHTML = billingaddress;
 
             let billingaddress2 = localStorage.getItem("billingaddress2");
-            document.getElementById("billingAddress2").innerHTML = billingaddress2;
+            document.getElementById("lblBillingAddress2").innerHTML = billingaddress2;
 
             let billingcity = localStorage.getItem("billingcity");
-            document.getElementById("lblbillingCity").innerHTML = billingcity;
+            document.getElementById("lblBillingCity").innerHTML = billingcity;
 
             let billingstate = localStorage.getItem("billingstate");
-            document.getElementById("billingState").innerHTML = billingstate;
+            document.getElementById("lblBillingState").innerHTML = billingstate;
 
             let billingzip = localStorage.getItem("billingzip");
-            document.getElementById("lblZip").innerHTML = billingzip;
+            document.getElementById("lblBillingZip").innerHTML = billingzip;
 
             let phone = localStorage.getItem("phone");
             document.getElementById("lblPhone").innerHTML = phone;
