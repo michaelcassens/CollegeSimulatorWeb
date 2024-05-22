@@ -61,6 +61,21 @@
             let zip = localStorage.getItem("zip");
             document.getElementById("lblZip").innerHTML = zip;
 
+            let billingaddress = localStorage.getItem("billingaddress");
+            document.getElementById("billingadderashed").innerHTML = billingaddress;
+
+            let billingaddress2 = localStorage.getItem("billingaddress2");
+            document.getElementById("billingAddress2").innerHTML = billingaddress2;
+
+            let billingcity = localStorage.getItem("billingcity");
+            document.getElementById("lblbillingCity").innerHTML = billingcity;
+
+            let billingstate = localStorage.getItem("billingstate");
+            document.getElementById("billingState").innerHTML = billingstate;
+
+            let billingzip = localStorage.getItem("billingzip");
+            document.getElementById("lblZip").innerHTML = billingzip;
+
             let phone = localStorage.getItem("phone");
             document.getElementById("lblPhone").innerHTML = phone;
 
@@ -115,6 +130,11 @@
                 <a href="#">Change Primary Contact</a>
             </div>
             <div class="col-md-12">
+                <label for="admninstratorContact" class="form-label"><strong>Administrator Contact</strong></label><br>
+                <span id="lblPrimaryContact"></span><br>
+                <a href="#">Change Primary Contact</a>
+            </div>
+            <div class="col-md-12">
                 <label for="inputEmail4" class="form-label"><strong>Email</strong></label><br>
                 <span id="lblEmail"></span><br>
                 <a href="#">Change Email</a>
@@ -134,6 +154,17 @@
                 <br>
                 <a href="#">Edit Address Information</a>
             </div>
+
+            <div class="col-md-12">
+                <label for="inputPassword4" class="form-label"><strong>Billing Information</strong></label><br>
+                <span id="lblBillingAddress"></span><br>
+                <span id="lblBillingAddress2"></span><br>
+                <span id="lblBillingCity"></span>, <span id="lblBillingState"></span> <span id="lblBillingZip"></span><br>
+
+                <br>
+                <a href="#">Edit Address Information</a>
+            </div>
+
             <div class="col-md-12">
                 <label for="inputPhone" class="form-label"><strong>Phone</strong></label><br>
                 <span id="lblPhone"></span><br>
